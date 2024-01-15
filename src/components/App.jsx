@@ -23,6 +23,7 @@ export class App extends Component {
     modalOpen: false,
     largeImage: '',
     alt: '',
+    load: false,
   };
   async componentDidMount() {
     this.setState({ loading: true });
@@ -71,8 +72,9 @@ export class App extends Component {
 
   render() {
     const { submitValue, loadMore, showModal, closeModal } = this;
-    const { posts, loading, error, modalOpen, largeImage, alt, load } =
+    const { posts, loading, error, modalOpen, largeImage, alt, load, search } =
       this.state;
+     
     return (
       <>
         <div className={css.app}>
@@ -83,7 +85,7 @@ export class App extends Component {
           ) : (
             <ImageGallery posts={posts} showModal={showModal} />
           )}
-          {load && !loading && (
+          {load && !loading && search&&(
             <Button title={'Load more'} onClick={loadMore} />
           )}
         </div>
